@@ -23,7 +23,7 @@ function Card() {
         </div>
         <div className="w-fit h-auto m-5 p-4 bg-white rounded-2xl">
           <h3 className="text-3xl font-bold text-orange-400 ">
-            Temperature {weather.data?.current?.temp_c.toFixed(0)}°C
+            Temp {weather.data?.current?.temp_c.toFixed(0)}°C
           </h3>
         </div>
         <div className="w-fit h-auto m-5 p-4 bg-white rounded-2xl">
@@ -33,7 +33,7 @@ function Card() {
         </div>
         <div className="w-fit h-auto m-5 p-4 bg-white rounded-2xl">
           <h3 className="text-3xl font-bold text-orange-400 ">
-            Wind Speed{weather.data?.current?.wind_kph}kph
+            Wind {weather.data?.current?.wind_kph}kph
           </h3>
         </div>
       </div>
