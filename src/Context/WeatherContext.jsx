@@ -9,11 +9,24 @@ export const useWeather = () => {
 
 export const WeatherProvider = (props) => {
   const [data, setData] = useState(null);
-  const [searchCity, setSearchCity] = useState(null);
-
+  const [searchCity, setSearchCity] = useState();
+  const [error, setError] = useState(null);
   const fetchData = async () => {
-    const response = await GetWeatherData(searchCity);
-    setData(response);
+    if (!searchCity) {
+      setError("Enter city name");
+      return;
+    }
+    try {
+      const response = await GetWeatherData(searchCity);
+      setData(response).catch(() => {
+        setError("Enter a valid city name.");
+      });
+
+      setError(null);
+    } catch (error) {
+      setError("Enter a valid city name.");
+      console.log("enter valid city name", error);
+    }
   };
 
   const fetchDeviceLocTemp = () => {
@@ -26,7 +39,15 @@ export const WeatherProvider = (props) => {
   };
   return (
     <WeatherContext.Provider
-      value={{ data, fetchData, searchCity, fetchDeviceLocTemp, setSearchCity }}
+      value={{
+        data,
+        fetchData,
+        searchCity,
+        fetchDeviceLocTemp,
+        setSearchCity,
+        setError,
+        error,
+      }}
     >
       {props.children}
     </WeatherContext.Provider>
