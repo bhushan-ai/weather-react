@@ -3,6 +3,7 @@ import GetWeatherData from "../Api/GetWeatherData";
 import { GetWeatherDataByLocation } from "../Api/GetWeatherData";
 export const WeatherContext = createContext(null);
 
+
 export const useWeather = () => {
   return useContext(WeatherContext);
 };
@@ -18,6 +19,8 @@ export const WeatherProvider = (props) => {
     }
     try {
       const response = await GetWeatherData(searchCity);
+      console.log(response);
+
       setData(response).catch(() => {
         setError("Enter a valid city name.");
       });
