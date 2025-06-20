@@ -20,10 +20,9 @@ function App() {
         <Input />
         <Button onClick={weather.fetchData} value={"Search"} />
       </div>
-      {weather.error && <Error />}
 
       <div className="flex items-center justify-center">
-        {weather.data ? <Card /> : <div className="hidden"></div>}
+        {weather.data ? <Card /> : weather.error && <Error />}
       </div>
     </div>
   );
